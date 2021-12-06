@@ -33,6 +33,7 @@ function tfgnn::move_generated_files() {
     GENFILES=$(pwd)
   fi
 
+  # Move the generated files to the source tree.
   FILES="
     tensorflow_gnn/proto/graph_schema_pb2.py
     tensorflow_gnn/proto/examples_pb2.py
@@ -42,6 +43,13 @@ function tfgnn::move_generated_files() {
   for FILE in ${FILES}; do
     cp -f ${GENFILES}/${FILE} ${BUILD_WORKSPACE_DIRECTORY}/${FILE}
   done
+
+  # Remove Bazel files for pypi requirement installation.
+  FILES="
+    tensorflow_gnn/proto/BUILD
+    tensorflow_gnn/tools/BUILD
+    tensorflow_gnn/sampler/BUILD
+  "
 }
 
 tfgnn::move_generated_files
