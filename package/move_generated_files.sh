@@ -50,6 +50,9 @@ function tfgnn::move_generated_files() {
     tensorflow_gnn/tools/BUILD
     tensorflow_gnn/sampler/BUILD
   "
+  for FILE in ${FILES}; do
+    rm ${BUILD_WORKSPACE_DIRECTORY}/${FILE}
+  done
 }
 
 tfgnn::move_generated_files
